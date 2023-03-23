@@ -18,3 +18,9 @@ resource "aws_s3_bucket" "fx_bucket" {
   bucket        = var.s3_bucket
   force_destroy = true # will delete contents of bucket when we run terraform destroy
 }
+
+# Set access control of bucket to private
+resource "aws_s3_bucket_acl" "s3_fx_bucket_acl" {
+  bucket = aws_s3_bucket.fx_bucket.id
+  acl    = "private"
+}

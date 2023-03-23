@@ -135,4 +135,5 @@ dmypy.json
 *.tfstate.lock.info
 .terraform.lock.hcl
 variables.tf
+terraform.tfvars
 

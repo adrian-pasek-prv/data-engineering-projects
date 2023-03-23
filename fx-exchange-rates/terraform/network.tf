@@ -10,6 +10,7 @@ resource "aws_vpc" "redshift-vpc" {
   
   tags = {
     Name        = "redshift-vpc"
+    Environment = "dev"
   }
 }
 
@@ -23,6 +24,7 @@ resource "aws_subnet" "redshift-subnet-az1" {
   
   tags = {
     Name        = "redshift-subnet-az1"
+    Environment = "dev"
   }
 }
 
@@ -34,6 +36,7 @@ resource "aws_subnet" "redshift-subnet-az2" {
   
   tags = {
     Name        = "redshift-subnet-az2"
+    Environment = "dev"
   }
 }
 
@@ -51,6 +54,7 @@ resource "aws_redshift_subnet_group" "redshift-subnet-group" {
 
   tags = {
     Name        = "redshift-subnet-group"
+    Environment = "dev"
   }
 }
 
@@ -62,6 +66,7 @@ resource "aws_internet_gateway" "redshift-igw" {
 
   tags = {
     Name        = "redshift-igw"
+    Environment = "dev"
   }
 }
 

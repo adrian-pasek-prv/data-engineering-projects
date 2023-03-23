@@ -13,5 +13,6 @@ resource "aws_default_security_group" "redshift_security_group" {
   
   tags = {
     Name        = "redshift-security-group"
+    Environment = "dev"
   }
 }

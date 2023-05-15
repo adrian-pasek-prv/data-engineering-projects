@@ -137,3 +137,5 @@ dmypy.json
 variables.tf
 terraform.tfvars
 
+# Files
+*.json

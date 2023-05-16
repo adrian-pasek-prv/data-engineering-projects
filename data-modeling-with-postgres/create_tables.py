@@ -1,3 +1,4 @@
+from sql_queries import drop_table_queries, create_table_queries
 import psycopg2
 
 def create_database():
@@ -65,8 +66,8 @@ def main():
     """
     cur, conn = create_database()
     
-    drop_tables(cur, conn)
-    create_tables(cur, conn)
+    drop_tables(conn, cur)
+    create_tables(conn, cur)
 
     conn.close()
 

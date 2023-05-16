@@ -9,8 +9,8 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 # CREATE TABLES
 
 songplay_table_create = ("""
-    CRATE TABLE IF NOT EXISTS songplays (
-        songplay_id INT NOT NULL,
+    CREATE TABLE IF NOT EXISTS songplays (
+        songplay_id INT PRIMARY KEY,
         start_time TIMESTAMP NOT NULL,
         user_id INT NOT NULL,
         level VARCHAR NOT NULL,
@@ -19,26 +19,49 @@ songplay_table_create = ("""
         session_id INT NOT NULL,
         location VARCHAR,
         user_agent VARCHAR
-    PRIMARY KEY (songplay_id),
-    FOREIGN KEY (user_id)
-        REFERENCES users (user_id),
-    FOREIGN KEY (song_id)
-        REFERENCES songs (song_id),
-    FOREIGN KEY (artist_id)
-        REFERENCES artists (artist_id)
     );
 """)
 
 user_table_create = ("""
+    CREATE TABLE IF NOT EXISTS users (
+        user_id INT PRIMARY KEY,
+        first_name VARCHAR NOT NULL,
+        last_name VARCHAR,
+        gender VARCHAR,
+        level VARCHAR NOT NULL
+    );
 """)
 
 song_table_create = ("""
+    CREATE TABLE IF NOT EXISTS songs (
+        song_id INT PRIMARY KEY,
+        title VARCHAR NOT NULL,
+        artist_id INT NOT NULL,
+        year INT NOT NULL,
+        duration DECIMAL NOT NULL
+    );
 """)
 
 artist_table_create = ("""
+    CREATE TABLE IF NOT EXISTS artists (
+        artist_id INT PRIMARY KEY,
+        name VARCHAR NOT NULL,
+        location VARCHAR,
+        latitude DOUBLE PRECISION,
+        longitude DOUBLE PRECISION
+    );
 """)
 
 time_table_create = ("""
+    CREATE TABLE IF NOT EXISTS time (
+        start_time TIMESTAMP PRIMARY KEY,
+        hour INT NOT NULL,
+        day INT NOT NULL,
+        week INT NOT NULL,
+        month INT NOT NULL,
+        year INT NOT NULL,
+        weekday INT NOT NULL
+    );
 """)
 
 # INSERT RECORDS

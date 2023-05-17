@@ -6,6 +6,10 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    '''
+    - Opens .json file as a Series in specified filepath
+    - Inserts song records and artist records
+    '''
     # open song file. Set typ='series' because single log file contains just one record
     df = pd.read_json(filepath, typ='series')
 
@@ -19,6 +23,12 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    '''
+    - Opens .json file in a specified filepath
+    - Enriches the DataFrame with time related columns and inserts them into time table
+    - Drops duplicates of user records and filters only users with valid userId
+    - Inserts users into user table and songplays into songplays table
+    '''
     # open log file with read_json. Set lines=True because source files has /n endings
     df = pd.read_json(filepath, lines=True)
 
@@ -71,6 +81,9 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    '''
+    Iterates over .json file and applies processing functions to insert data in bulk
+    '''
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -90,6 +103,13 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    '''
+    ETL workflow with all steps executed:
+    - Connect to database
+    - Create a cursor for SQL statements
+    - Process song_data and log_data json files
+    - Close connection
+    '''
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=admin password=admin")
     cur = conn.cursor()
 

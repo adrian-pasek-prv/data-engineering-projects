@@ -137,7 +137,7 @@ song_select = ("""
   JOIN artists using (artist_id)
   WHERE songs.title = %s
   AND artists.name = %s
-  AND songs.duration = %s
+  AND songs.duration = %s;  
 """)
 
 # QUERY LISTS
